@@ -1,12 +1,12 @@
-const { User } = require('../db/sequelize')
+const { User } = require('../../db/sequelize')
 const { Op } = require('sequelize')
-const auth = require('../auth/auth')
+const auth = require('../../auth/auth')
 
 module.exports = (app) => {
-    app.get('/meditation/users', auth, (req, res)=>{
+    app.get('/meditation/users', auth.authMideleware, (req, res)=>{
         if(req.query.email){
             const email = req.query.email
-            const limit = parseInt(req.query.limit) || 1
+            const limit = parseInt(req.query.limit) || 5
             return User.findAndCountAll(
                 {
                     where: {

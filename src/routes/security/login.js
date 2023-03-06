@@ -1,7 +1,8 @@
-const { User } = require('../db/sequelize')
+const { User } = require('../../db/sequelize')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
-const privateKey = require('../auth/private_key')
+const privateKey = require('../../auth/private_key')
+
 module.exports = (app) => {
     app.post('/meditation/login', (req, res)=>{
         const emailCnx = req.body.email

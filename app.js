@@ -12,14 +12,19 @@ app
 .use(morgan('dev'))
 .use(express.json())
 .use(cors());
+
+// Initialisation database
 sequelize.initDb()
 
-require('./src/routes/createUser')(app)
-require('./src/routes/findUserByPk')(app)
-require('./src/routes/updateUser')(app)
-require('./src/routes/findAllUsers')(app)
-require('./src/routes/deleteUser')(app)
-require('./src/routes/login')(app)
-require('./src/routes/register')(app)
+//User Routes
+require('./src/routes/user/createUser')(app)
+require('./src/routes/user/findUserByPk')(app)
+require('./src/routes/user/updateUser')(app)
+require('./src/routes/user/findAllUsers')(app)
+require('./src/routes/user/deleteUser')(app)
+require('./src/routes/security/login')(app)
+require('./src/routes/security/register')(app)
 
+//Meditatione Time
+require('./src/routes/meditaionTime/addMeditationTime')(app)
 app.listen(port, () => console.log(`Notre serveur attend sur http://localhsot:${port}`))

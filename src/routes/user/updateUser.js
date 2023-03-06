@@ -1,10 +1,10 @@
-const { User } = require('../db/sequelize')
+const { User } = require('../../db/sequelize')
 const { UniqueConstraintError } = require('sequelize')
 const { application } = require('express')
-const auth = require('../auth/auth')
+const auth = require('../../auth/auth')
 
 module.exports = (app) => {
-    app.put('/meditation/users/:id', auth, (req, res)=>{
+    app.put('/meditation/users/:id', auth.authMideleware, (req, res)=>{
         const userId = req.params.id
         User.update(req.body, {
             where: {id : userId}
